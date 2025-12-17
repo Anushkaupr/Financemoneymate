@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Financemoneymate</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="title_activity_forget_password">ForgetPasswordActivity</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="title_activity_home_screen">HomeScreen</string>
+    <string name="title_activity_search_screen">SearchScreen</string>
+    <string name="title_activity_notification_screen">NotificationScreen</string>
+    <string name="title_activity_more_screen">MoreScreen</string>
+</resources>
