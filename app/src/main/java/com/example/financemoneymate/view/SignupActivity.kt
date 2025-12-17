@@ -49,7 +49,7 @@ fun SignupBody() {
 
     val context = LocalContext.current
     val activity = context as Activity
-
+    var dob by remember { mutableStateOf("") }
     var firstName by remember { mutableStateOf("") }
     var lastName by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -104,6 +104,16 @@ fun SignupBody() {
                     value = lastName,
                     onValueChange = { lastName = it },
                     placeholder = { Text("Last name") },
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(12.dp)
+                )
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                OutlinedTextField(
+                    value = dob,
+                    onValueChange = { dob = it },
+                    placeholder = { Text("Date of Birth") },
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp)
                 )
@@ -166,7 +176,8 @@ fun SignupBody() {
                                         userId = userId,
                                         email = email,
                                         firstName = firstName,
-                                        lastName = lastName
+                                        lastName = lastName,
+                                        dob = dob
                                     )
 
                                     userViewModel.addUserToDatabase(userId, user) { dbSuccess, dbMsg ->
@@ -178,7 +189,7 @@ fun SignupBody() {
 
                                         if (dbSuccess) {
                                             context.startActivity(
-                                                Intent(context, LoginActivity::class.java)
+                                                Intent(context, DashboardActivity::class.java)
                                             )
                                             activity.finish()
                                         }

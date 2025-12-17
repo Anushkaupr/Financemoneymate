@@ -1,10 +1,11 @@
 package com.example.financemoneymate.model
 
 data class UserModel(
-    val userId : String = "",
+    val userId : String = " ",
     val email : String = "",
     val firstName : String = "",
     val lastName : String = "",
+    val dob : String=""
 
 ){
     fun toMap() : Map<String,Any?>{
@@ -12,7 +13,8 @@ data class UserModel(
             "email" to email,
             "userId" to userId,
             "firstname" to firstName,
-            "lastname" to lastName
+            "lastname" to lastName,
+            "dob" to dob
         )
     }
 }

@@ -55,7 +55,7 @@ class UserRepoImpl: UserRepo {
                 if (it.isSuccessful){
                     callback(true,"Registration success","${auth.currentUser?.uid}")
                 }else{
-                    callback(true,"${it.exception?.message}","")
+                    callback(false,"${it.exception?.message}","")
                 }
             }
     }
