@@ -12,6 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Financemoneymate">
         <activity
+            android:name=".view.HomepageActivity"
+            android:exported="true"
+            android:label="@string/title_activity_homepage"
+            android:theme="@style/Theme.Financemoneymate">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".view.MoreScreen"
             android:exported="true"
             android:label="@string/title_activity_more_screen"

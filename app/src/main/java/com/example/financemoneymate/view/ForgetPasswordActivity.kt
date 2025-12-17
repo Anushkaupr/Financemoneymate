@@ -117,7 +117,7 @@ fun ForgetPasswordBody() {
                             if (success) {
                                 // Navigate to Signup page
                                 context.startActivity(
-                                    Intent(context, SignupActivity::class.java)
+                                    Intent(context, LoginActivity::class.java)
                                 )
                             }
                         }
