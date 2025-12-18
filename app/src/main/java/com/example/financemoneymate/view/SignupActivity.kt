@@ -188,9 +188,7 @@ fun SignupBody() {
                                         ).show()
 
                                         if (dbSuccess) {
-                                            context.startActivity(
-                                                Intent(context, DashboardActivity::class.java)
-                                            )
+
                                             activity.finish()
                                         }
                                     }
