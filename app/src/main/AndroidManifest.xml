@@ -45,9 +45,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.NotificationScreen"
+            android:name=".view.SavingsActivity"
             android:exported="true"
-            android:label="@string/title_activity_notification_screen"
+            android:label="Savings"
             android:theme="@style/Theme.Financemoneymate" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

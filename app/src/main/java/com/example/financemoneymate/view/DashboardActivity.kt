@@ -1,5 +1,6 @@
 package com.example.financemoneymate.view
 
+
 import android.app.Activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -63,8 +64,8 @@ fun DashboardBody() {
             icon = R.drawable.baseline_search_24,
         ),
         NavItem(
-            label = "Notification",
-            icon = R.drawable.baseline_notifications_24,
+            label = "savings",
+            icon = R.drawable.baseline_savings_24,
         ),
         NavItem(
             label = "More",
@@ -140,7 +141,7 @@ fun DashboardBody() {
             when(selectedIndex){
                 0-> HomeScreen()
                 1-> SearchScreen()
-                2-> NotificationScreen()
+                2-> SavingsBody()
                 3-> MoreScreen()
                 else -> HomeScreen()
             }
