@@ -162,7 +162,9 @@ fun SignupBody() {
                         if (
                             email.isBlank() ||
                             password.isBlank() ||
-                            firstName.isBlank()
+                            firstName.isBlank() ||
+                            dob.isBlank() ||
+                            lastName.isBlank()
                         ) {
                             Toast.makeText(
                                 context,
