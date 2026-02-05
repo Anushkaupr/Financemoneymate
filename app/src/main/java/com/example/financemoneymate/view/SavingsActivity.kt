@@ -48,10 +48,12 @@ class SavingsActivity : ComponentActivity() {
 @Composable
 fun SavingsBody(viewModel: SavingsViewModel = androidx.lifecycle.viewmodel.compose.viewModel()) {
     val context = LocalContext.current
+
+    // --- ADD THIS LINE TO DEFINE currentUser ---
+    val currentUser = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser
+
     var savingFieldName by remember { mutableStateOf("") }
     var savingAmount by remember { mutableStateOf("") }
-
-    // NEW: Track the ID of the item being edited. Empty means "Create Mode".
     var editingfId by remember { mutableStateOf("") }
 
     val savingsList by viewModel.savingsList.collectAsState()
@@ -73,18 +75,34 @@ fun SavingsBody(viewModel: SavingsViewModel = androidx.lifecycle.viewmodel.compo
                 Text("Savings", fontSize = 28.sp, fontWeight = FontWeight.Bold)
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Column(horizontalAlignment = Alignment.End) {
-                        Text("John Doe", fontWeight = FontWeight.Bold, fontSize = 14.sp)
-                        Text("john@example.com", color = Color.Gray, fontSize = 12.sp)
+                        // These will now work because currentUser is defined above
+                        Text(
+                            text = currentUser?.displayName ?: "User",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 14.sp
+                        )
+                        Text(
+                            text = currentUser?.email ?: "No Email",
+                            color = Color.Gray,
+                            fontSize = 12.sp
+                        )
                     }
                     Spacer(Modifier.width(8.dp))
-                    Box(modifier = Modifier.size(40.dp).background(Color(0xFF4A3AFF), CircleShape), contentAlignment = Alignment.Center) {
-                        Text("JD", color = Color.White, fontWeight = FontWeight.Bold)
+                    Box(
+                        modifier = Modifier
+                            .size(40.dp)
+                            .background(Color(0xFF4A3AFF), CircleShape),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        val initials = currentUser?.displayName?.take(1)?.uppercase() ?: "U"
+                        Text(text = initials, color = Color.White, fontWeight = FontWeight.Bold)
                     }
                 }
             }
 
             Spacer(modifier = Modifier.height(24.dp))
 
+            // ... (Rest of your Card and LazyColumn code remains exactly the same)
             Card(
                 colors = CardDefaults.cardColors(containerColor = DarkBlueBg),
                 shape = RoundedCornerShape(24.dp),
