@@ -56,9 +56,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.SearchScreen"
+            android:name=".view.ExpenseActivity"
             android:exported="true"
-            android:label="@string/title_activity_search_screen"
+            android:label="Expense"
             android:theme="@style/Theme.Financemoneymate" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -60,8 +60,8 @@ fun DashboardBody() {
             icon = R.drawable.baseline_home_24,
         ),
         NavItem(
-            label = "Search",
-            icon = R.drawable.baseline_search_24,
+            label = "Expense",
+            icon = R.drawable.baseline_explicit_24,
         ),
         NavItem(
             label = "savings",
@@ -140,7 +140,7 @@ fun DashboardBody() {
         ) {
             when(selectedIndex){
                 0-> HomeScreen()
-                1-> SearchScreen()
+                1-> ExpenseBody()
                 2-> SavingsBody()
                 3-> MoreScreen()
                 else -> HomeScreen()
