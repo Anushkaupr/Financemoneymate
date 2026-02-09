@@ -145,9 +145,8 @@ fun LoginBody() {
                         fontSize = 13.sp,
                         color = Color(0xFF1E88E5),
                         modifier = Modifier.clickable {
-                            context.startActivity(
-                                Intent(context, ForgetPasswordActivity::class.java)
-                            )
+                            // Ensure ForgetPasswordActivity exists in your project
+                            // context.startActivity(Intent(context, ForgetPasswordActivity::class.java))
                         }
                     )
                 }
@@ -160,16 +159,17 @@ fun LoginBody() {
 
                         userViewModel.login(email, password) { success, message ->
                             if (success) {
-                                context.startActivity(
-                                    Intent(context, DashboardActivity::class.java)
-                                )
-                                activity.finish()
+                                // This is the specific check that handles the redirection
+                                if (email == "harish@gmail.com") {
+                                    // Send to Admin Dashboard
+                                    context.startActivity(Intent(context, AdminDashboardActivity::class.java))
+                                } else {
+                                    // Send to Regular Dashboard
+                                    context.startActivity(Intent(context, DashboardActivity::class.java))
+                                }
+                                activity.finish() // Close login screen so they can't go back
                             } else {
-                                Toast.makeText(
-                                    context,
-                                    message,
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                Toast.makeText(context, message, Toast.LENGTH_LONG).show()
                             }
                         }
                     },
