@@ -53,7 +53,7 @@ fun HomepageBody() {
     ) {
         // Background image
         Image(
-            painter = painterResource(id = R.drawable.homepagebg),
+            painter = painterResource(id = R.drawable.img),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop,
