@@ -172,8 +172,10 @@ fun SignupBody() {
                                 Toast.LENGTH_LONG
                             ).show()
                         } else {
+                            // Step 1: Firebase Auth Signup
                             userViewModel.signup(email, password) { success, message, userId ->
                                 if (success) {
+                                    // Step 2: Create User Model for Database
                                     val user = UserModel(
                                         userId = userId,
                                         email = email,
@@ -182,24 +184,21 @@ fun SignupBody() {
                                         dob = dob
                                     )
 
+                                    // Step 3: Save to Database (Making them visible to Admin)
                                     userViewModel.addUserToDatabase(userId, user) { dbSuccess, dbMsg ->
-                                        Toast.makeText(
-                                            context,
-                                            dbMsg,
-                                            Toast.LENGTH_LONG
-                                        ).show()
-
                                         if (dbSuccess) {
+                                            Toast.makeText(context, "Account Created Successfully!", Toast.LENGTH_SHORT).show()
 
+                                            // Step 4: Logic to redirect after signup
+                                            // Usually, we send them to login or dashboard
+                                            context.startActivity(Intent(context, LoginActivity::class.java))
                                             activity.finish()
+                                        } else {
+                                            Toast.makeText(context, dbMsg, Toast.LENGTH_LONG).show()
                                         }
                                     }
                                 } else {
-                                    Toast.makeText(
-                                        context,
-                                        message,
-                                        Toast.LENGTH_LONG
-                                    ).show()
+                                    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
                                 }
                             }
                         }
@@ -231,10 +230,4 @@ fun SignupBody() {
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun SignupPreview() {
-    SignupBody()
 }
