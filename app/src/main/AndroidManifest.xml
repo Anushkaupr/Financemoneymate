@@ -12,6 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Financemoneymate">
         <activity
+            android:name=".view.IncomeActivity"
+            android:exported="true"
+            android:label="@string/title_activity_income"
+            android:theme="@style/Theme.Financemoneymate">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".view.AdminDashboardActivity"
             android:exported="true"
             android:label="@string/title_activity_admin_dashboard"
@@ -55,7 +66,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".view.SavingsActivity"
             android:exported="true"
@@ -89,6 +99,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".view.DashboardActivity"
             android:exported="true"
