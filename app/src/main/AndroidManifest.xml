@@ -12,6 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Financemoneymate">
         <activity
+            android:name=".utils.CloudinaryConfig"
+            android:exported="true"
+            android:label="@string/title_activity_cloudinary_config"
+            android:theme="@style/Theme.Financemoneymate">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".view.IncomeActivity"
             android:exported="true"
             android:label="@string/title_activity_income"
@@ -99,7 +110,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".view.DashboardActivity"
             android:exported="true"
