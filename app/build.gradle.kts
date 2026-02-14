@@ -54,6 +54,9 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.androidx.credentials)
 
+    implementation("com.cloudinary:cloudinary-android:2.5.0")
+    implementation("io.coil-kt:coil-compose:2.4.0")
+    implementation("androidx.compose.material:material-icons-extended")
         implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.10.0") // Or your project's version
 
     implementation(libs.androidx.credentials.play.services.auth)
