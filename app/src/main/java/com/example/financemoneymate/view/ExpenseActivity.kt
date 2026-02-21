@@ -72,30 +72,7 @@ fun ExpenseBody(viewModel: ExpenseViewModel = viewModel()) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text("Expenses", fontSize = 28.sp, fontWeight = FontWeight.Bold)
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Column(horizontalAlignment = Alignment.End) {
-                        Text(
-                            text = currentUser?.displayName ?: "User",
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 14.sp
-                        )
-                        Text(
-                            text = currentUser?.email ?: "No Email",
-                            color = Color.Gray,
-                            fontSize = 12.sp
-                        )
-                    }
-                    Spacer(Modifier.width(8.dp))
-                    Box(
-                        modifier = Modifier
-                            .size(40.dp)
-                            .background(Color(0xFF4A3AFF), CircleShape),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        val initials = currentUser?.displayName?.take(1)?.uppercase() ?: "U"
-                        Text(text = initials, color = Color.White, fontWeight = FontWeight.Bold)
-                    }
-                }
+
             }
 
             Spacer(modifier = Modifier.height(24.dp))
@@ -115,7 +92,7 @@ fun ExpenseBody(viewModel: ExpenseViewModel = viewModel()) {
                         OutlinedTextField(
                             value = expenseName,
                             onValueChange = { expenseName = it },
-                            placeholder = { Text("Title", color = Color.Gray) },
+                            placeholder = { Text("Expensed Reason", color = Color.Gray) },
                             modifier = Modifier.weight(1.5f),
                             shape = RoundedCornerShape(12.dp),
                             colors = OutlinedTextFieldDefaults.colors(
@@ -130,7 +107,7 @@ fun ExpenseBody(viewModel: ExpenseViewModel = viewModel()) {
                         OutlinedTextField(
                             value = expenseAmount,
                             onValueChange = { expenseAmount = it },
-                            placeholder = { Text("Amt", color = Color.Gray) },
+                            placeholder = { Text("Amount", color = Color.Gray) },
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                             modifier = Modifier.weight(1f),
                             shape = RoundedCornerShape(12.dp),

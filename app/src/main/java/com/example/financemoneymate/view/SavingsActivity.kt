@@ -27,7 +27,7 @@ import com.example.financemoneymate.viewmodel.SavingsViewModel
 
 val DarkBlueBg = Color(0xFF1A2232)
 val CardInnerBg = Color(0xFF242F41)
-val SuccessGreen = Color(0xFF00C853)
+val SuccessGreen = Color(0xFFE91E63)
 val ActionYellow = Color(0xFFFFC107)
 val ActionRed = Color(0xFFF44336)
 
@@ -75,28 +75,10 @@ fun SavingsBody(viewModel: SavingsViewModel = androidx.lifecycle.viewmodel.compo
                 Text("Savings", fontSize = 28.sp, fontWeight = FontWeight.Bold)
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Column(horizontalAlignment = Alignment.End) {
-                        // These will now work because currentUser is defined above
-                        Text(
-                            text = currentUser?.displayName ?: "User",
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 14.sp
-                        )
-                        Text(
-                            text = currentUser?.email ?: "No Email",
-                            color = Color.Gray,
-                            fontSize = 12.sp
-                        )
+
                     }
                     Spacer(Modifier.width(8.dp))
-                    Box(
-                        modifier = Modifier
-                            .size(40.dp)
-                            .background(Color(0xFF4A3AFF), CircleShape),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        val initials = currentUser?.displayName?.take(1)?.uppercase() ?: "U"
-                        Text(text = initials, color = Color.White, fontWeight = FontWeight.Bold)
-                    }
+
                 }
             }
 
@@ -168,7 +150,7 @@ fun SavingsBody(viewModel: SavingsViewModel = androidx.lifecycle.viewmodel.compo
                             shape = RoundedCornerShape(12.dp),
                             modifier = Modifier.height(56.dp)
                         ) {
-                            Text(if (editingfId.isEmpty()) "Create" else "Update", fontSize = 12.sp, color = if (editingfId.isEmpty()) Color.White else Color.Black)
+                            Text(if (editingfId.isEmpty()) "Create Saving" else "Update", fontSize = 12.sp, color = if (editingfId.isEmpty()) Color.White else Color.Black)
                         }
                     }
 

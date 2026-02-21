@@ -67,19 +67,7 @@ fun IncomeBody(viewModel: IncomeViewModel = viewModel()) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text("Income", fontSize = 28.sp, fontWeight = FontWeight.Bold, color = Color(0xFF4A3AFF))
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Column(horizontalAlignment = Alignment.End) {
-                        Text(text = currentUser?.displayName ?: "User", fontWeight = FontWeight.Bold, fontSize = 14.sp)
-                        Text(text = currentUser?.email ?: "No Email", color = Color.Gray, fontSize = 12.sp)
-                    }
-                    Spacer(Modifier.width(8.dp))
-                    Box(
-                        modifier = Modifier.size(40.dp).background(Color(0xFF4A3AFF), CircleShape),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(text = currentUser?.displayName?.take(1)?.uppercase() ?: "U", color = Color.White)
-                    }
-                }
+
             }
 
             Spacer(modifier = Modifier.height(24.dp))
@@ -110,7 +98,7 @@ fun IncomeBody(viewModel: IncomeViewModel = viewModel()) {
                         OutlinedTextField(
                             value = incomeAmount,
                             onValueChange = { incomeAmount = it },
-                            placeholder = { Text("Amt", color = Color.Gray) },
+                            placeholder = { Text("Amount", color = Color.Gray) },
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                             modifier = Modifier.weight(1f),
                             shape = RoundedCornerShape(12.dp),
@@ -168,7 +156,7 @@ fun IncomeBody(viewModel: IncomeViewModel = viewModel()) {
                                         Text("Edit", color = Color(0xFFF1C40F), fontSize = 12.sp)
                                     }
                                     IconButton(onClick = { viewModel.deleteIncomeFromFirebase(item.fId) }) {
-                                        Text("Del", color = Color(0xFFE74C3C), fontSize = 12.sp)
+                                        Text("Delete", color = Color(0xFFE74C3C), fontSize = 12.sp)
                                     }
                                 }
                             }

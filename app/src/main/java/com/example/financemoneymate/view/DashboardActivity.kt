@@ -82,7 +82,7 @@ fun DashboardBody(
 
     val listNav = listOf(
         Pair("Home", R.drawable.baseline_home_24),
-        Pair("Income", R.drawable.baseline_home_24),
+        Pair("Income", R.drawable.baseline_account_balance_wallet_24),
         Pair("Expense", R.drawable.baseline_explicit_24),
         Pair("Savings", R.drawable.baseline_savings_24),
         Pair("More", R.drawable.baseline_more_horiz_24)
