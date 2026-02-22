@@ -27,7 +27,7 @@ import com.example.financemoneymate.viewmodel.SavingsViewModel
 
 val DarkBlueBg = Color(0xFF1A2232)
 val CardInnerBg = Color(0xFF242F41)
-val SuccessGreen = Color(0xFFE91E63)
+val SuccessGreen = Color(0xFFF44336)
 val ActionYellow = Color(0xFFFFC107)
 val ActionRed = Color(0xFFF44336)
 
@@ -72,7 +72,10 @@ fun SavingsBody(viewModel: SavingsViewModel = androidx.lifecycle.viewmodel.compo
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text("Savings", fontSize = 28.sp, fontWeight = FontWeight.Bold)
+                Text("Savings", fontSize = 28.sp, fontWeight = FontWeight.Bold, color = Color(
+                    0xFF4CAF50
+                )
+                )
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Column(horizontalAlignment = Alignment.End) {
 
@@ -91,7 +94,7 @@ fun SavingsBody(viewModel: SavingsViewModel = androidx.lifecycle.viewmodel.compo
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Column(modifier = Modifier.padding(20.dp)) {
-                    Text("Savings", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                    Text("Savings Amount here ", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp, )
 
                     Spacer(Modifier.height(16.dp))
 
@@ -126,33 +129,36 @@ fun SavingsBody(viewModel: SavingsViewModel = androidx.lifecycle.viewmodel.compo
                                 focusedBorderColor = Color.Gray
                             )
                         )
-                        Spacer(Modifier.width(8.dp))
-
-                        // Action Button (Dynamic: Create or Update)
-                        Button(
-                            onClick = {
-                                if (savingFieldName.isNotBlank() && savingAmount.isNotBlank()) {
-                                    if (editingfId.isEmpty()) {
-                                        viewModel.addSavingToFirebase(savingFieldName, savingAmount)
-                                    } else {
-                                        viewModel.updateSavingInFirebase(editingfId, savingFieldName, savingAmount)
-                                        editingfId = "" // Clear edit mode
-                                    }
-                                    savingFieldName = ""
-                                    savingAmount = ""
-                                } else {
-                                    Toast.makeText(context, "Please fill all fields", Toast.LENGTH_SHORT).show()
-                                }
-                            },
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = if (editingfId.isEmpty()) SuccessGreen else ActionYellow
-                            ),
-                            shape = RoundedCornerShape(12.dp),
-                            modifier = Modifier.height(56.dp)
-                        ) {
-                            Text(if (editingfId.isEmpty()) "Create Saving" else "Update", fontSize = 12.sp, color = if (editingfId.isEmpty()) Color.White else Color.Black)
-                        }
                     }
+                        Spacer(Modifier.height(16.dp))
+
+                       Column{
+                           Button(
+                               onClick = {
+                                   if (savingFieldName.isNotBlank() && savingAmount.isNotBlank()) {
+                                       if (editingfId.isEmpty()) {
+                                           viewModel.addSavingToFirebase(savingFieldName, savingAmount)
+                                       } else {
+                                           viewModel.updateSavingInFirebase(editingfId, savingFieldName, savingAmount)
+                                           editingfId = "" // Clear edit mode
+                                       }
+                                       savingFieldName = ""
+                                       savingAmount = ""
+                                   } else {
+                                       Toast.makeText(context, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                                   }
+                               },
+                               colors = ButtonDefaults.buttonColors(
+                                   containerColor = if (editingfId.isEmpty()) SuccessGreen else ActionYellow
+                               ),
+                               modifier = Modifier.fillMaxWidth(),
+                               shape = RoundedCornerShape(12.dp)
+                           ) {
+                               Text(if (editingfId.isEmpty()) "Create Saving" else "Update", fontSize = 12.sp, color = if (editingfId.isEmpty()) Color.White else Color.Black)
+                           }
+                       }
+
+
 
                     Spacer(modifier = Modifier.height(20.dp))
 

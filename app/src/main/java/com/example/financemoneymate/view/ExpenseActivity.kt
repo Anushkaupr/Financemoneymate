@@ -71,7 +71,10 @@ fun ExpenseBody(viewModel: ExpenseViewModel = viewModel()) {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text("Expenses", fontSize = 28.sp, fontWeight = FontWeight.Bold)
+                Text("Expenses", fontSize = 28.sp, fontWeight = FontWeight.Bold,color = Color(
+                    0xFFF44336
+                )
+                )
 
             }
 
@@ -80,7 +83,7 @@ fun ExpenseBody(viewModel: ExpenseViewModel = viewModel()) {
             // Input Card
             Card(
                 colors = CardDefaults.cardColors(containerColor = DarkBlueBg),
-                shape = RoundedCornerShape(24.dp),
+                shape = RoundedCornerShape(30.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Column(modifier = Modifier.padding(20.dp)) {
@@ -119,45 +122,48 @@ fun ExpenseBody(viewModel: ExpenseViewModel = viewModel()) {
                                 focusedBorderColor = Color.Gray
                             )
                         )
-                        Spacer(Modifier.width(8.dp))
 
-                        // Action Button
-                        Button(
-                            onClick = {
-                                if (expenseName.isNotBlank() && expenseAmount.isNotBlank()) {
-                                    if (editingFId.isEmpty()) {
-                                        viewModel.addExpenseToFirebase(expenseName, expenseAmount)
-                                    } else {
-                                        viewModel.updateExpenseInFirebase(editingFId, expenseName, expenseAmount)
-                                        editingFId = ""
-                                    }
-                                    expenseName = ""
-                                    expenseAmount = ""
-                                } else {
-                                    Toast.makeText(context, "All fields required", Toast.LENGTH_SHORT).show()
-                                }
-                            },
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = if (editingFId.isEmpty()) SuccessGreen else ActionYellow
-                            ),
-                            shape = RoundedCornerShape(12.dp),
-                            modifier = Modifier.height(56.dp)
-                        ) {
-                            Text(
-                                text = if (editingFId.isEmpty()) "Add" else "Fix",
-                                fontSize = 12.sp,
-                                color = if (editingFId.isEmpty()) Color.White else Color.Black
-                            )
-                        }
+
                     }
+                    Spacer(Modifier.height(16.dp))
+                    Column {
+                        Button(
+                        onClick = {
+                            if (expenseName.isNotBlank() && expenseAmount.isNotBlank()) {
+                                if (editingFId.isEmpty()) {
+                                    viewModel.addExpenseToFirebase(expenseName, expenseAmount)
+                                } else {
+                                    viewModel.updateExpenseInFirebase(editingFId, expenseName, expenseAmount)
+                                    editingFId = ""
+                                }
+                                expenseName = ""
+                                expenseAmount = ""
+                            } else {
+                                Toast.makeText(context, "All fields required", Toast.LENGTH_SHORT).show()
+                            }
+                        },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = if (editingFId.isEmpty()) SuccessGreen else ActionYellow
+                        ),
+                            modifier = Modifier.fillMaxWidth(),
+                            shape = RoundedCornerShape(12.dp)
+                    ) {
+                        Text(
+                            text = if (editingFId.isEmpty()) "Add Expense " else "Fix",
+                            fontSize = 12.sp,
+                            color = if (editingFId.isEmpty()) Color.White else Color.Black
+                        )
+                    }
+                    }
+
 
                     Spacer(modifier = Modifier.height(20.dp))
 
                     // Table Header
                     Row(modifier = Modifier.fillMaxWidth().background(CardInnerBg).padding(8.dp)) {
-                        Text("Item", Modifier.weight(1f), color = Color.White, fontWeight = FontWeight.Bold)
+                        Text("Expensed Reason", Modifier.weight(1f), color = Color.White, fontWeight = FontWeight.Bold)
                         Text("Amount", Modifier.weight(1f), color = Color.White, fontWeight = FontWeight.Bold)
-                        Text("Actions", Modifier.weight(1f), color = Color.White, fontWeight = FontWeight.Bold)
+                        Text("   Actions", Modifier.weight(1f), color = Color.White, fontWeight = FontWeight.Bold)
                     }
 
                     // Expenses List

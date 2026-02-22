@@ -54,7 +54,7 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.androidx.credentials)
 
-        implementation("androidx.compose.runtime:runtime-livedata:1.7.0")
+
 
     implementation("com.cloudinary:cloudinary-android:2.5.0")
     implementation("io.coil-kt:coil-compose:2.4.0")
