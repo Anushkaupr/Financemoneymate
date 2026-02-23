@@ -59,6 +59,15 @@ fun HomepageBody() {
             contentScale = ContentScale.Crop,
             alpha = 0.3f
         )
+        Image(
+            painter = painterResource(id = R.drawable.logo),
+            contentDescription = "App Logo",
+            modifier = Modifier
+                .statusBarsPadding() // Ensures it doesn't sit under the camera notch/status bar
+                .padding(16.dp)
+                .size(60.dp) // Adjust size as needed
+                .align(Alignment.TopEnd)
+        )
 
         // Main content card
         Card(

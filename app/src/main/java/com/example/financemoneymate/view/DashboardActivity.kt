@@ -92,16 +92,42 @@ fun DashboardBody(
         topBar = {
             CenterAlignedTopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFFF8F9FD)),
-                title = { Text("DASHBOARD", fontWeight = FontWeight.Bold, fontSize = 18.sp) },
+                navigationIcon = {
+                    // This places the logo on the top-left side
+                    Image(
+                        painter = painterResource(id = R.drawable.logo),
+                        contentDescription = "App Logo",
+                        modifier = Modifier
+                            .padding(start = 16.dp)
+                            .size(52.dp) // Adjust size as needed
+                            .clip(CircleShape),
+                        contentScale = ContentScale.Fit
+                    )
+                },
+                title = {
+                    Text("DASHBOARD", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                },
                 actions = {
-                    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(end = 12.dp)) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.padding(end = 12.dp)
+                    ) {
                         Column(horizontalAlignment = Alignment.End) {
                             Text(currentUser?.displayName ?: "User", fontWeight = FontWeight.Bold, fontSize = 12.sp)
                             Text(currentUser?.email ?: "No Email", color = Color.Gray, fontSize = 10.sp)
                         }
                         Spacer(Modifier.width(8.dp))
-                        Box(modifier = Modifier.size(35.dp).background(Color(0xFF6200EE), CircleShape), contentAlignment = Alignment.Center) {
-                            Text(currentUser?.email?.take(1)?.uppercase() ?: "U", color = Color.White, fontWeight = FontWeight.Bold)
+                        Box(
+                            modifier = Modifier
+                                .size(35.dp)
+                                .background(Color(0xFF6200EE), CircleShape),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                currentUser?.email?.take(1)?.uppercase() ?: "U",
+                                color = Color.White,
+                                fontWeight = FontWeight.Bold
+                            )
                         }
                     }
                 }
