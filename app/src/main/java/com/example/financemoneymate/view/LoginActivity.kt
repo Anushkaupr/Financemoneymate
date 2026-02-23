@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.testTag // REQUIRED FOR TESTING
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -54,7 +55,6 @@ fun LoginBody() {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
-    var rememberMe by remember { mutableStateOf(false) }
 
     val userViewModel = remember { UserViewModel(UserRepoImpl()) }
 
@@ -90,17 +90,21 @@ fun LoginBody() {
 
                 Spacer(modifier = Modifier.height(20.dp))
 
+                // EMAIL FIELD
                 OutlinedTextField(
                     value = email,
                     onValueChange = { email = it },
                     placeholder = { Text("Enter your email") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("email"), // ADDED TAG
                     shape = RoundedCornerShape(12.dp)
                 )
 
                 Spacer(modifier = Modifier.height(12.dp))
 
+                // PASSWORD FIELD
                 OutlinedTextField(
                     value = password,
                     onValueChange = { password = it },
@@ -122,7 +126,9 @@ fun LoginBody() {
                             )
                         }
                     },
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("password"), // ADDED TAG
                     shape = RoundedCornerShape(12.dp)
                 )
 
@@ -132,12 +138,6 @@ fun LoginBody() {
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Checkbox(
-                        checked = rememberMe,
-                        onCheckedChange = { rememberMe = it }
-                    )
-                    Text("Remember me", fontSize = 13.sp)
-
                     Spacer(modifier = Modifier.weight(1f))
 
                     Text(
@@ -145,29 +145,26 @@ fun LoginBody() {
                         fontSize = 13.sp,
                         color = Color(0xFF1E88E5),
                         modifier = Modifier.clickable {
-                            // Ensure ForgetPasswordActivity exists in your project
-                            // context.startActivity(Intent(context, ForgetPasswordActivity::class.java))
+                            context.startActivity(Intent(context, ForgetPasswordActivity::class.java))
                         }
                     )
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
 
+                // LOGIN BUTTON
                 Button(
                     onClick = {
                         keyboardController?.hide()
 
                         userViewModel.login(email, password) { success, message ->
                             if (success) {
-                                // This is the specific check that handles the redirection
                                 if (email == "harish@gmail.com") {
-                                    // Send to Admin Dashboard
                                     context.startActivity(Intent(context, AdminDashboardActivity::class.java))
                                 } else {
-                                    // Send to Regular Dashboard
                                     context.startActivity(Intent(context, DashboardActivity::class.java))
                                 }
-                                activity.finish() // Close login screen so they can't go back
+                                activity.finish()
                             } else {
                                 Toast.makeText(context, message, Toast.LENGTH_LONG).show()
                             }
@@ -175,10 +172,11 @@ fun LoginBody() {
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(50.dp),
+                        .height(50.dp)
+                        .testTag("button"), // ADDED TAG
                     shape = RoundedCornerShape(12.dp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF34C759)
+                        containerColor = Color(0xFF2563EB)
                     )
                 ) {
                     Text("Login", color = Color.White, fontSize = 16.sp)
@@ -190,11 +188,12 @@ fun LoginBody() {
                     text = "Don’t have an account? Sign Up",
                     color = Color(0xFF1E88E5),
                     fontSize = 14.sp,
-                    modifier = Modifier.clickable {
-                        context.startActivity(
-                            Intent(context, SignupActivity::class.java)
-                        )
-                    }
+                    modifier = Modifier
+                        .clickable {
+                            context.startActivity(
+                                Intent(context, SignupActivity::class.java)
+                            )
+                        }
                 )
             }
         }

@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag // REQUIRED FOR TESTING
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -85,6 +86,7 @@ fun ForgetPasswordBody() {
 
             Spacer(modifier = Modifier.height(20.dp))
 
+            // EMAIL INPUT FIELD
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
@@ -92,12 +94,15 @@ fun ForgetPasswordBody() {
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Email
                 ),
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .testTag("forgotEmailField"), // ADDED TAG
                 shape = RoundedCornerShape(12.dp)
             )
 
             Spacer(modifier = Modifier.height(20.dp))
 
+            // RESET BUTTON
             Button(
                 onClick = {
                     if (email.isBlank()) {
@@ -115,7 +120,7 @@ fun ForgetPasswordBody() {
                             ).show()
 
                             if (success) {
-                                // Navigate to Signup page
+                                // Navigate to Login page
                                 context.startActivity(
                                     Intent(context, LoginActivity::class.java)
                                 )
@@ -125,7 +130,8 @@ fun ForgetPasswordBody() {
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(50.dp),
+                    .height(50.dp)
+                    .testTag("resetButton"), // ADDED TAG
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFF1E88E5)
@@ -137,7 +143,6 @@ fun ForgetPasswordBody() {
                     fontSize = 16.sp
                 )
             }
-
 
             Spacer(modifier = Modifier.height(16.dp))
 
